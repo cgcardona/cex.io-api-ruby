@@ -1,0 +1,218 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>
+  File: README
+  
+    &mdash; Documentation by YARD 0.8.7.3
+  
+</title>
+
+  <link rel="stylesheet" href="css/style.css" type="text/css" charset="utf-8" />
+
+  <link rel="stylesheet" href="css/common.css" type="text/css" charset="utf-8" />
+
+<script type="text/javascript" charset="utf-8">
+  hasFrames = window.top.frames.main ? true : false;
+  relpath = '';
+  framesUrl = "frames.html#!" + escape(window.location.href);
+</script>
+
+
+  <script type="text/javascript" charset="utf-8" src="js/jquery.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="js/app.js"></script>
+
+
+  </head>
+  <body>
+    <div id="header">
+      <div id="menu">
+  
+    <a href="_index.html">Index</a> &raquo; 
+    <span class="title">File: README</span>
+  
+
+  <div class="noframes"><span class="title">(</span><a href="." target="_top">no frames</a><span class="title">)</span></div>
+</div>
+
+      <div id="search">
+  
+    <a class="full_list_link" id="class_list_link"
+        href="class_list.html">
+      Class List
+    </a>
+  
+    <a class="full_list_link" id="method_list_link"
+        href="method_list.html">
+      Method List
+    </a>
+  
+    <a class="full_list_link" id="file_list_link"
+        href="file_list.html">
+      File List
+    </a>
+  
+</div>
+      <div class="clear"></div>
+    </div>
+
+    <iframe id="search_frame"></iframe>
+
+    <div id="content"><div id='filecontents'><h1>Cex.io</h1>
+
+<p>CEX.IO API integration. Ruby gem.</p>
+
+<h2>Installation</h2>
+
+<p>Add this line to your application&#39;s Gemfile:</p>
+
+<pre class="code ruby"><code class="ruby"><span class='id identifier rubyid_gem'>gem</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>cexio</span><span class='tstring_end'>'</span></span>
+</code></pre>
+
+<p>And then execute:</p>
+
+<pre class="code ruby"><code class="ruby">$ bundle
+</code></pre>
+
+<p>Or install it yourself as:</p>
+
+<pre class="code ruby"><code class="ruby">$ gem install cexio
+</code></pre>
+
+<h2>Usage</h2>
+
+<h2>How to use?</h2>
+
+<h3>1. Create your ruby project</h3>
+
+<h3>2. Add &quot;require &#39;cexio&#39;&quot;)</h3>
+
+<h3>3. Create class</h3>
+
+<pre class="code ruby"><code class="ruby">  <span class='id identifier rubyid_api'>api</span> <span class='op'>=</span> <span class='const'>CEX</span><span class='op'>::</span><span class='const'>API</span><span class='lparen'>(</span><span class='id identifier rubyid_username'>username</span><span class='comma'>,</span> <span class='id identifier rubyid_api_key'>api_key</span><span class='comma'>,</span> <span class='id identifier rubyid_api_secret'>api_secret</span><span class='rparen'>)</span>
+</code></pre>
+
+<pre class="code ruby"><code class="ruby">username - your username on cex.io
+api_key - your API key
+api_secret - your API secret code
+</code></pre>
+
+<h3>4. Methods and parameters:</h3>
+
+<h4>a) API method parametrs</h4>
+
+<pre class="code ruby"><code class="ruby">1. couple = (&quot;GHS\BTC&quot; | &quot;BF1\BTC&quot;) currency pair
+2. since = integer  return trades with tid &gt;= since
+3. order_id = integer 
+4. ptype = (&quot;sell&quot; | &quot;buy&quot;) type of order
+5. amount = float 
+6. price = float
+</code></pre>
+
+<h4>b) API methods</h4>
+
+<pre class="code ruby"><code class="ruby">1. ticker(couple = 'GHS/BTC') - get ticker
+2. order_book(couple = 'GHS/BTC') - get order
+3. trade_history(since = 1, couple = 'GHS/BTC') -  get all order
+4. balance() - get your balance
+5. current_orders(couple = 'GHS/BTC') - get open order
+6. cancel_order(order_id) - cancel order №order_id
+7. place_order(ptype = 'buy', amount = 1, price = 1, couple = 'GHS/BTC') - create order
+</code></pre>
+
+<h4>c) Full API documentation: <a href="https://cex.io/api">https://cex.io/api</a></h4>
+
+<h3>5. Examples</h3>
+
+<h4>Connect and get balance:</h4>
+
+<pre class="code ruby"><code class="ruby"> <span class='comment'># -*- encoding : utf-8 -*-
+</span><span class='id identifier rubyid_require'>require</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>rubygems</span><span class='tstring_end'>'</span></span>
+<span class='id identifier rubyid_require'>require</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>cexio</span><span class='tstring_end'>'</span></span>
+
+<span class='id identifier rubyid_cex'>cex</span> <span class='op'>=</span> <span class='const'>CEX</span><span class='op'>::</span><span class='const'>API</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='id identifier rubyid_username'>username</span><span class='comma'>,</span> <span class='id identifier rubyid_api_key'>api_key</span><span class='comma'>,</span> <span class='id identifier rubyid_api_secret'>api_secret</span><span class='rparen'>)</span>
+<span class='id identifier rubyid_puts'>puts</span> <span class='id identifier rubyid_cex'>cex</span><span class='period'>.</span><span class='id identifier rubyid_balance'>balance</span>
+
+</code></pre>
+
+<pre class="code json"><code class="json">{'timestamp': '1383379054', 'BTC': {'available': '0.04614310', 'orders': '0.00170000'}, 'GHS': {'available': '0.02000000'}}
+</code></pre>
+
+<h4>Get balance:</h4>
+
+<pre class="code ruby"><code class="ruby"><span class='id identifier rubyid_puts'>puts</span> <span class='id identifier rubyid_cex'>cex</span><span class='period'>.</span><span class='id identifier rubyid_balance'>balance</span>
+</code></pre>
+
+<pre class="code json"><code class="json">{'timestamp': '1383379054', 'BTC': {'available': '0.04614310', 'orders': '0.00170000'}, 'GHS': {'available': '0.02000000'}}
+</code></pre>
+
+<h4>Get API ticker:</h4>
+
+<pre class="code ruby"><code class="ruby"><span class='id identifier rubyid_puts'>puts</span> <span class='id identifier rubyid_cex'>cex</span><span class='period'>.</span><span class='id identifier rubyid_ticker'>ticker</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>GHS/BTC</span><span class='tstring_end'>'</span></span><span class='rparen'>)</span>
+</code></pre>
+
+<pre class="code json"><code class="json">{u'volume': '7154.78339022', 'last': '0.1078', 'timestamp': '1383379041', 'bid': '0.10778', 'high': '0.10799999', 'low': '0.10670076', 'ask': '0.10780000000000001'}
+</code></pre>
+
+<h4>Get order book:</h4>
+
+<pre class="code ruby"><code class="ruby"><span class='id identifier rubyid_puts'>puts</span> <span class='id identifier rubyid_cex'>cex</span><span class='period'>.</span><span class='id identifier rubyid_order_book'>order_book</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>BF1/BTC</span><span class='tstring_end'>'</span></span><span class='rparen'>)</span>
+</code></pre>
+
+<pre class="code json"><code class="json">{'timestamp': '1383378967', 'bids': [['1.7', '0.30100000'], ['1.67', '0.00011000'], ['0.8', '0.02070000'], ['0.1002', '0.27748002'], ['0.1', '0.10000000'], ['0.011', '0.30500000'], ['0.009', '1.00000000'], ['0.00171', '0.00100000'], ['0.0012', '1.00000000'], ['0.00116819', '0.50000000'], ['0.001002', '33.00000000'], ['0.001001', '53.00000000'], ['0.001', '3.00000000'], ['0.00097626', '36.00000000'], ['0.0006', '85.00000000'], ['0.00058409', '0.50000000'], ['0.0004889', '0.06823960'], ['0.0003', '1.00000000'], ['0.00029204', '0.90000000'], ['0.0001', '101.00000000']], 'asks': []}
+</code></pre>
+
+<h4>Get your current active orders:</h4>
+
+<pre class="code ruby"><code class="ruby"><span class='id identifier rubyid_puts'>puts</span> <span class='id identifier rubyid_cex'>cex</span><span class='period'>.</span><span class='id identifier rubyid_current_orders'>current_orders</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>BF1/BTC</span><span class='tstring_end'>'</span></span><span class='rparen'>)</span>
+</code></pre>
+
+<pre class="code json"><code class="json">[{'price': '1.7', 'amount': '0.00100000', 'time': '1383378514737', 'type': 'buy', 'id': '6219104', 'pending': '0.00100000'}]
+</code></pre>
+
+<h4>Place new order:</h4>
+
+<pre class="code ruby"><code class="ruby"><span class='id identifier rubyid_puts'>puts</span> <span class='id identifier rubyid_cex'>cex</span><span class='period'>.</span><span class='id identifier rubyid_place_order'>place_order</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>buy</span><span class='tstring_end'>'</span></span><span class='comma'>,</span> <span class='float'>0.001</span><span class='comma'>,</span> <span class='float'>1.7</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>BF1/BTC</span><span class='tstring_end'>'</span></span><span class='rparen'>)</span>
+</code></pre>
+
+<pre class="code json"><code class="json">{'price': '1.7', 'amount': '0.00100000', 'time': 1383378987622, 'type': 'buy', 'id': '6219145', 'pending': '0.00100000'}
+</code></pre>
+
+<h4>Place another order (GHS/BTC):</h4>
+
+<pre class="code ruby"><code class="ruby"><span class='id identifier rubyid_puts'>puts</span> <span class='id identifier rubyid_cex'>cex</span><span class='period'>.</span><span class='id identifier rubyid_place_order'>place_order</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>buy</span><span class='tstring_end'>'</span></span><span class='comma'>,</span> <span class='float'>0.01</span><span class='comma'>,</span> <span class='float'>0.10789</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>GHS/BTC</span><span class='tstring_end'>'</span></span><span class='rparen'>)</span>
+</code></pre>
+
+<pre class="code json"><code class="json">{'price': '0.10789', 'amount': '0.01000000', 'time': 1383379024072, 'type': 'buy', 'id': '6219150', 'pending': '0.00000000'}
+</code></pre>
+
+<h4>Cancel order:</h4>
+
+<pre class="code ruby"><code class="ruby"><span class='id identifier rubyid_cex'>cex</span><span class='period'>.</span><span class='id identifier rubyid_cancel_order'>cancel_order</span><span class='lparen'>(</span><span class='int'>6219145</span><span class='rparen'>)</span>
+</code></pre>
+
+<pre class="code json"><code class="json">True
+</code></pre>
+
+<h2>Contributing</h2>
+
+<ol>
+<li>Fork it</li>
+<li>Create your feature branch (<code>git checkout -b my-new-feature</code>)</li>
+<li>Commit your changes (<code>git commit -am &#39;Add some feature&#39;</code>)</li>
+<li>Push to the branch (<code>git push origin my-new-feature</code>)</li>
+<li>Create new Pull Request</li>
+</ol>
+</div></div>
+
+    <div id="footer">
+  Generated on Mon Dec 23 18:23:47 2013 by
+  <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
+  0.8.7.3 (ruby-1.9.3).
+</div>
+
+  </body>
+</html>
