@@ -26,6 +26,9 @@ class API
       param.merge!(:key => self.api_key, :signature => self.signature.to_s, :nonce => self.nonce_v)
     end
     answer = self.post(url, param)
+    if answer == 'true'
+      answer = {was_deleted: 'true'}.to_json
+    end
     JSON.parse(answer)
   end
 
